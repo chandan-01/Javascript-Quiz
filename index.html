@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>CLI quiz game</h1>
+</body>
+<script>
+    var readLineSync = require("readline-sync");
+//function to welcome player
+function welcome(playerName){
+  console.log("Welcome "+playerName+" to Do you know javascript");
+}
+//function to ask question and validate answer
+function play(question,answer){
+  var userAnswer=readLineSync.question(question+"\n");
+  if(userAnswer.toUpperCase()===answer.toUpperCase()){
+    console.log("you are right");
+    score++;
+  }
+  else{ 
+    console.log("wrong answer,right answer is : "+answer)
+  }
+  console.log("current score: ", score);
+  console.log("-------------")
+}
+function showScores() {
+  console.log("YAY! You SCORED: ", score);
+
+  console.log("Check out the high scores, if you should be there ping me and I'll update it");
+
+  highScores.map(score => console.log(score.name, " : ", score.score))
+}
+
+// asking for Playername
+var score=0;
+var playerName=readLineSync.question("What is your name\n");
+//making array of questions and answers
+var arrayQuestion=[
+{
+ question:"Who developed javascript",
+ answer:"Brendan Eich"
+},
+{
+  question:"Inside which HTML element do we put the JavaScript?",
+  answer:"script"
+},
+{question:"Is these two are similar java and javascript",answer:"no"},
+{question:"Javascript is case sensitive yes or no",answer:"yes"},
+{question:"Who made this game",answer:"chandan kumar"}
+                  ]
+var highScores = [
+  {
+    name: "chandan",
+    score: 5,
+  },
+
+  {
+    name: "anjali",
+    score: 2,
+  },
+]
+welcome(playerName);
+// iterating every question in array
+for(var i=0;i<arrayQuestion.length;i++){
+  play(arrayQuestion[i].question,arrayQuestion[i].answer)
+}
+
+//showing total score out of 5
+console.log("total score is: "+score+"/5")
+showScores();
+</script>
+</html>
